@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-let initialState = {
+const initialState = {
     name: '',
     email: '',
     password: '',
@@ -13,11 +13,9 @@ let initialState = {
 class FormApp extends Component {
     constructor() {
         super()
-        this.state = {
-            ...initialState
-        }
-        this.myRef = React.createRef();
+        this.myForm = React.createRef()
     }
+    state = { ...initialState }
 
     changeHandler = (event) => {
         if (event.target.type === "checkbox") {
@@ -40,138 +38,145 @@ class FormApp extends Component {
     }
 
     submitHandler = (event) => {
-        console.log(this.state)
         event.preventDefault()
-        this.myRef.current.reset()
+        console.log(this.state)
+        this.myForm.current.reset()
         this.setState({ ...initialState })
     }
 
     render() {
         return (
-            <div className="row">
-                <div className="col-sm-8 offset-sm-2">
-                    <form onSubmit={this.submitHandler} ref={this.myRef}>
-                        <div className="form-group">
-                            <label htmlFor="name">Enter your Name</label>
-                            <input
-                                type="text"
-                                name="name"
-                                className="form-control"
-                                id="name"
-                                value={this.state.name}
-                                placeholder="Enter your Name"
-                                onChange={this.changeHandler} />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="name">Email</label>
-                            <input
-                                type="email"
-                                className="form-control"
-                                name="email"
-                                id="email"
-                                value={this.state.email}
-                                placeholder="Enter your Email"
-                                onChange={this.changeHandler} />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="name">Password</label>
-                            <input
-                                type="password"
-                                className="form-control"
-                                name="password"
-                                id="password"
-                                value={this.state.password}
-                                placeholder="Enter your Password"
-                                onChange={this.changeHandler} />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="name">Bio</label>
-                            <textarea
-                                type="text"
-                                className="form-control"
-                                name="bio"
-                                id="bio"
-                                value={this.state.bio}
-                                placeholder="Enter your Short Bio"
-                                onChange={this.changeHandler} />
-                        </div>
-                        <div className="form-group">Gender
-                        <div className="form-check">
-                                <input
-                                    type="radio"
-                                    className="form-check-input"
-                                    name="gender"
-                                    id="male"
-                                    value="Male"
-                                    onChange={this.changeHandler} />
-                                <label htmlFor="gender"> Male</label>
-                            </div>
-                            <div className="form-check">
-                                <input
-                                    type="radio"
-                                    className="form-check-input"
-                                    name="gender"
-                                    id="female"
-                                    value="Female"
-                                    onChange={this.changeHandler} />
-                                <label htmlFor="gender"> Female</label>
-                            </div>
-                        </div>
-                        <div className="form-group">Country
-                        <select className="custom-select mr-sm-2" name="country" id="country" onChange={this.changeHandler}>
-                                <option>Choose Your Country</option>
-                                <option value="Bangladesh">Bangladesh</option>
-                                <option value="Australia">Australia</option>
-                                <option value="Germany">Germany</option>
-                                <option value="USA">USA</option>
-                            </select>
-                        </div>
-                        <div className="form-group">Skills
-                        <div className="form-check">
-                                <input
-                                    type="checkbox"
-                                    className="form-check-input"
-                                    name="skills"
-                                    id="react"
-                                    value="React"
-                                    onChange={this.changeHandler} />
-                                <label className="form-check-label" htmlFor="react">React</label>
-                            </div>
-                            <div className="form-check">
-                                <input
-                                    type="checkbox"
-                                    className="form-check-input"
-                                    name="skills"
-                                    id="javascript"
-                                    value="Javascript"
-                                    onChange={this.changeHandler} />
-                                <label className="form-check-label" htmlFor="javascript">Javascript</label>
-                            </div>
-                            <div className="form-check">
-                                <input
-                                    type="checkbox"
-                                    className="form-check-input"
-                                    name="skills"
-                                    id="angular"
-                                    value="Angular"
-                                    onChange={this.changeHandler} />
-                                <label className="form-check-label" htmlFor="angular">Angular</label>
-                            </div>
-                            <div className="form-check">
-                                <input
-                                    type="checkbox"
-                                    className="form-check-input"
-                                    name="skills"
-                                    id="react"
-                                    value="NodeJs"
-                                    onChange={this.changeHandler} />
-                                <label className="form-check-label" htmlFor="react">NodeJs</label>
-                            </div>
-                        </div>
-                        <button type="submit" className="btn btn-primary">Submit</button>
-                    </form>
+            <form onSubmit={this.submitHandler} ref={this.myForm}>
+                <div className="form-group">
+                    <label htmlFor="name">Enter Your Full Name</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        name="name"
+                        id="name"
+                        value={this.state.name}
+                        placeholder="Enter your Name"
+                        onChange={this.changeHandler} />
                 </div>
-            </div >
+                <div className="form-group">
+                    <label htmlFor="email">Enter Your Valid Email</label>
+                    <input
+                        type="email"
+                        className="form-control"
+                        name="email"
+                        id="email"
+                        value={this.state.email}
+                        placeholder="Enter your Email"
+                        onChange={this.changeHandler} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        name="password"
+                        id="password"
+                        value={this.state.password}
+                        placeholder="Enter your Password"
+                        onChange={this.changeHandler} />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="bio">Enter Your Short Bio</label>
+                    <textarea
+                        type="text"
+                        className="form-control"
+                        name="bio"
+                        id="bio"
+                        value={this.state.bio}
+                        placeholder="Enter your Bio"
+                        onChange={this.changeHandler} />
+                </div>
+                <div className="form-group">Select Your Gender
+                        <div className="form-check">
+                        <input
+                            type="radio"
+                            className="form-check-input"
+                            name="gender"
+                            id="gender1"
+                            value="Male"
+                            onChange={this.changeHandler} />
+                        <label htmlFor="gender1"> Male</label>
+                    </div>
+                    <div className="form-check">
+                        <input
+                            type="radio"
+                            className="form-check-input"
+                            name="gender"
+                            id="gender2"
+                            value="Female"
+                            onChange={this.changeHandler} />
+                        <label htmlFor="gender2"> Female</label>
+                    </div>
+                    <div className="form-check">
+                        <input
+                            type="radio"
+                            className="form-check-input"
+                            name="gender"
+                            id="gender3"
+                            value="Other"
+                            onChange={this.changeHandler} />
+                        <label htmlFor="gender3"> Other </label>
+                    </div>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="country">Choose Your Country</label>
+                    <select className="form-control" name="country" id="country" onChange={this.changeHandler}>
+                        <option>Select Your Country</option>
+                        <option value="Bangladesh">Bangladesh</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Germany">Germany</option>
+                        <option value="USA">USA</option>
+                    </select>
+                </div>
+                <div className="form-group">Skills
+                        <div className="form-check">
+                        <input
+                            type="checkbox"
+                            className="form-check-input"
+                            name="skills"
+                            id="react"
+                            value="ReactJS"
+                            onChange={this.changeHandler} />
+                        <label className="form-check-label" htmlFor="react">ReactJS</label>
+                    </div>
+                    <div className="form-check">
+                        <input
+                            type="checkbox"
+                            className="form-check-input"
+                            name="skills"
+                            id="js"
+                            value="Javascript"
+                            onChange={this.changeHandler} />
+                        <label className="form-check-label" htmlFor="js">Javascript</label>
+                    </div>
+                    <div className="form-check">
+                        <input
+                            type="checkbox"
+                            className="form-check-input"
+                            name="skills"
+                            id="angular"
+                            value="AngularJS"
+                            onChange={this.changeHandler} />
+                        <label className="form-check-label" htmlFor="angular">AngularJS</label>
+                    </div>
+                    <div className="form-check">
+                        <input
+                            type="checkbox"
+                            className="form-check-input"
+                            name="skills"
+                            id="node"
+                            value="NodeJs"
+                            onChange={this.changeHandler} />
+                        <label className="form-check-label" htmlFor="node">NodeJs</label>
+                    </div>
+                </div>
+                <button type="submit" className="btn btn-primary">Submit</button>
+            </form>
         );
     }
 }
